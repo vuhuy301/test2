@@ -1,0 +1,56 @@
+classDiagram
+    Client --> AbstractFactory
+    Client --> License
+    Client --> OfficeSuite
+    Client --> OperationalSystem
+
+    AbstractFactory <|-- MacFactory :Inheritance
+    AbstractFactory <|-- WindowsFactory :Inheritance
+
+    Access ..|> MicrosoftOffice :Implements
+    Word ..|> MicrosoftOffice :Implements
+    Excel ..|> MicrosoftOffice :Implements
+    PowerPoint ..|> MicrosoftOffice :Implements
+
+    IWork --|> OfficeSuite
+    MicrosoftOffice --|> OfficeSuite
+
+    Keynote ..|> IWork :Implements
+    Numbers ..|> IWork :Implements
+    Pages ..|> IWork :Implements
+
+    MacFactory ..> OperationalSystem
+    MacFactory ..> License
+    MacFactory ..> OfficeSuite
+
+    WindowsFactory ..> OperationalSystem
+    WindowsFactory ..> License
+    WindowsFactory ..> OfficeSuite
+
+    MacOS ..> OperationalSystem
+    Windows10 ..> OperationalSystem
+
+    Freeware ..> License
+    Proprietary ..> License
+
+    class AbstractFactory {
+      <<interface>>
+      +createOperationalSystem() OperationalSystem
+      +createLicense() License
+      +createOfficeSuite() List~String~
+    }
+    class OfficeSuite {
+      <<interface>>
+    }
+    class IWork {
+      <<interface>>
+    }
+    class MicrosoftOffice {
+      <<interface>>
+    }
+    class OperationalSystem {
+      <<interface>>
+    }
+    class License {
+      <<interface>>
+    }
